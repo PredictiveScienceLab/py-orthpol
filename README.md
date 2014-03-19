@@ -11,6 +11,7 @@ For example:
 + The polynomials can be used in least squares applications.
 + The polynomials can serve as the mean in Gaussian process regression.
 + etc.
+
 The need to have an easy to use package that can generate polynomials orthogonal
 with respect to arbitrary weight functions is motivated by applications in the
 field of Uncertainty Quantification (UQ). In UQ, collections of such polynomials
