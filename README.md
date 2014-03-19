@@ -1,12 +1,32 @@
-================================
-ORTHOGONAL POLYNOMIALS IN PYTHON
+Orthogonal Polynomials in Python
 ================================
 
 Description
 -----------
+The ``py-orthpol`` package defines the model ``orthpol`` which can be used
+easily construct univariate and multivariate orthogonal polynomials in Python.
+The purpose of this code is to serve as a component in Python packages that
+could use orthogonal polynomials as basis functions for various tasks.
+For example:
++ The polynomials can be used in least squares applications.
++ The polynomials can serve as the mean in Gaussian process regression.
++ etc.
+The need to have an easy to use package that can generate polynomials orthogonal
+with respect to arbitrary weight functions is motivated by applications in the
+field of Uncertainty Quantification (UQ). In UQ, collections of such polynomials
+are known as generalized Polynomial Chaos (gPC). My end goal is to provide a tool
+that makes it **ridiculously easy** to construct these polynomials.
 
-This package serves as a Python wrapper for the legacy Fortran code ORTHPOL.
-It allows the construction of orthogonal polynomials given a weight function.
+Where does this come from?
+--------------------------
+
+This package serves as a Python wrapper for the legacy Fortran code
+[ORTHPOL](http://dl.acm.org/citation.cfm?id=174605). The original ORTHPOL
+code can be found
+[here](https://www.cs.purdue.edu/archives/2001/wxg/codes/ORTHPOL).
+The code that computes tensors products of univariate orthogonal polynomials
+is a transolation of [Stockos](http://trilinos.sandia.gov/packages/stokhos/)
+C++ routines to Python.
 
 
 Demos
