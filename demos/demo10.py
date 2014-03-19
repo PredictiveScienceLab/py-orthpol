@@ -1,9 +1,11 @@
 """
-Generates a univariate Hermite polynomials.
+Generate the orthogonal polynomials using a scipy.stats random variable.
+This particular demo generates polynomials orthogonal with respect to a
+truncated normal distribution.
 
 This demo demonstrates how to:
-    + Construct a set of orthogonal univariate polynomials given a weight
-      function.
+    + Construct a set of orthogonal univariate polynomials given a scipy.stats
+      random variable.
     + Examine certain properties of a univariate polynomial.
     + Evaluate the polynomials at one or more points.
     + Evaluate the derivatives of the polynomials at one or more points.
@@ -20,17 +22,19 @@ import orthpol
 import math
 import numpy as np
 import matplotlib.pyplot as plt
+import scipy.stats
 
 
 # The desired degree
 degree = 4
 
-# The first way of doing it is by directly supplying the weight function.
-wf = lambda(x): 1. / math.sqrt(2. * math.pi) * np.exp(-x ** 2 / 2.)
+# The upper and lower cutoffs:
+lower = 0.
+upper = 2.
+# The first way of doing it is write down the random variable:
+rv = scipy.stats.truncnorm(lower, upper)
 # Construct it:
-p = orthpol.OrthogonalPolynomial(degree,
-                                left=-np.inf, right=np.inf, # Domain
-                                wf=wf)
+p = orthpol.OrthogonalPolynomial(degree, rv=rv)
 # An orthogonal polynomial is though of as a function.
 # Here is how to get the number of inputs and outputs of that function
 print 'Number of inputs:', p.num_input
@@ -45,13 +49,13 @@ print 'Beta:', p.beta
 # The following should print a description of the polynomial
 print str(p)
 # Now you can evaluate the polynomial at any points you want:
-X = np.linspace(-2., 2., 100)
+X = np.linspace(lower, upper, 100)
 # Here is the actual evaluation
 phi = p(X)
 # Phi should be a 100x11 matrix: phi(i, j) = poly(i, X[j])
 # Let's plot them
 plt.plot(X, phi)
-plt.title('Hermite Polynomials', fontsize=16)
+plt.title('Truncated Normal Polynomials', fontsize=16)
 plt.xlabel('$x$', fontsize=16)
 plt.ylabel('$p_i(x)$', fontsize=16)
 plt.legend(['$p_{%d}(x)$' % i for i in range(p.num_output)], loc='best')
@@ -61,7 +65,7 @@ plt.show()
 dphi = p.d(X)
 # Let's plot them also
 plt.plot(X, dphi)
-plt.title('Derivatives of Hermite Polynomials', fontsize=16)
+plt.title('Derivatives of Truncated Normal Polynomials', fontsize=16)
 plt.xlabel('$x$', fontsize=16)
 plt.ylabel(r'$\frac{dp_i(x)}{dx}$', fontsize=16)
 plt.legend([r'$\frac{p_{%d}(x)}{dx}$' % i for i in range(p.num_output)], loc='best')

@@ -1,5 +1,5 @@
 """
-Generates a univariate Hermite polynomials.
+Same as demo1.py, but generates the Gegenbauer polynomials.
 
 This demo demonstrates how to:
     + Construct a set of orthogonal univariate polynomials given a weight
@@ -25,11 +25,13 @@ import matplotlib.pyplot as plt
 # The desired degree
 degree = 4
 
+# Pick the alpha and beta of the Gegenbauer polynomials
+alpha = .5
 # The first way of doing it is by directly supplying the weight function.
-wf = lambda(x): 1. / math.sqrt(2. * math.pi) * np.exp(-x ** 2 / 2.)
+wf = lambda(x): (1. - x ** 2.) ** (alpha - 0.5)
 # Construct it:
 p = orthpol.OrthogonalPolynomial(degree,
-                                left=-np.inf, right=np.inf, # Domain
+                                left=-1., right=1., # Domain
                                 wf=wf)
 # An orthogonal polynomial is though of as a function.
 # Here is how to get the number of inputs and outputs of that function
@@ -45,13 +47,13 @@ print 'Beta:', p.beta
 # The following should print a description of the polynomial
 print str(p)
 # Now you can evaluate the polynomial at any points you want:
-X = np.linspace(-2., 2., 100)
+X = np.linspace(-1., 1., 100)
 # Here is the actual evaluation
 phi = p(X)
 # Phi should be a 100x11 matrix: phi(i, j) = poly(i, X[j])
 # Let's plot them
 plt.plot(X, phi)
-plt.title('Hermite Polynomials', fontsize=16)
+plt.title('Gegenbauer Polynomials', fontsize=16)
 plt.xlabel('$x$', fontsize=16)
 plt.ylabel('$p_i(x)$', fontsize=16)
 plt.legend(['$p_{%d}(x)$' % i for i in range(p.num_output)], loc='best')
@@ -61,7 +63,7 @@ plt.show()
 dphi = p.d(X)
 # Let's plot them also
 plt.plot(X, dphi)
-plt.title('Derivatives of Hermite Polynomials', fontsize=16)
+plt.title('Derivatives of Gegenbauer Polynomials', fontsize=16)
 plt.xlabel('$x$', fontsize=16)
 plt.ylabel(r'$\frac{dp_i(x)}{dx}$', fontsize=16)
 plt.legend([r'$\frac{p_{%d}(x)}{dx}$' % i for i in range(p.num_output)], loc='best')

@@ -1,9 +1,10 @@
 """
-Generates a univariate Hermite polynomials.
+Generate the Hermite polynomials using a scipy.stats random variable.
+This particular demo generates the Hermite polynomials.
 
 This demo demonstrates how to:
-    + Construct a set of orthogonal univariate polynomials given a weight
-      function.
+    + Construct a set of orthogonal univariate polynomials given a scipy.stats
+      random variable.
     + Examine certain properties of a univariate polynomial.
     + Evaluate the polynomials at one or more points.
     + Evaluate the derivatives of the polynomials at one or more points.
@@ -20,17 +21,16 @@ import orthpol
 import math
 import numpy as np
 import matplotlib.pyplot as plt
+import scipy.stats
 
 
 # The desired degree
 degree = 4
 
-# The first way of doing it is by directly supplying the weight function.
-wf = lambda(x): 1. / math.sqrt(2. * math.pi) * np.exp(-x ** 2 / 2.)
+# The first way of doing it is write down the random variable:
+rv = scipy.stats.norm()
 # Construct it:
-p = orthpol.OrthogonalPolynomial(degree,
-                                left=-np.inf, right=np.inf, # Domain
-                                wf=wf)
+p = orthpol.OrthogonalPolynomial(degree, rv=rv)
 # An orthogonal polynomial is though of as a function.
 # Here is how to get the number of inputs and outputs of that function
 print 'Number of inputs:', p.num_input

@@ -4,7 +4,7 @@ Same as demo1.py, but generates the Chebyshev polynomials.
 This demo demonstrates how to:
     + Construct a set of orthogonal univariate polynomials given a weight
       function.
-    + Examine certain properties of a univariate polynomial
+    + Examine certain properties of a univariate polynomial.
     + Evaluate the polynomials at one or more points.
     + Evaluate the derivatives of the polynomials at one or more points.
 
