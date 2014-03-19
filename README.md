@@ -34,10 +34,12 @@ Installation
 
 Simply clone the repository:
 
+```bash
 git clone https://github.com/ebilionis/py-orthpol.git
 
 Go inside the directory and run:
 
+```bash
 python setup.py install
 
 Demos
