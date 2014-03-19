@@ -62,3 +62,12 @@ Here is a list of them:
 + [demos/demo8.pv](demos/demo8.py): Hermite polynomials using ``scipy.stats.norm()``.
 + [demos/demo9.pv](demos/demo9.py): Shifted Hermite polynomials using a non-standard ``scipy.stats.norm()``.
 + [demos/demo10.py](demos/demo10.py): Orthogonal polynomials with respect to a truncated normal.
++ [demos/demo11.py](demos/demo11.py): 2D orthogonal polynomials using the ``ProductBasis`` class and a collection of ``scipy.stats`` random variables.
+
+
+TODO
+----
+
+This is a list of things that need to be done:
++ Implement the method ``orthopol.ProductBasis.d()`` that calculates the
+derivative of a product basis of polynomials with respect to x.

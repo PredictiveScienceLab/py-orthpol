@@ -105,18 +105,18 @@ class OrthogonalPolynomial(object):
         self._num_input = 1
         self._num_output = self.degree + 1
 
-    def __call__(self, x, hyp=None):
+    def __call__(self, x):
         """Evaluate the function at x."""
         return orthpol.poly_eval_all(x, self.alpha, self.beta, self.gamma)
 
-    def d(self, x, hyp=None):
+    def d(self, x):
         return orthpol.poly_deval_all(x, self.alpha, self.beta, self.gamma)
 
-    def _eval(self, x, hyp=None):
+    def _eval(self, x):
         """Evaluate the polynomial basis at x."""
         return orthpol.poly_eval(x, self.alpha, self.beta, self.gamma)
 
-    def _d_eval(self, x, hyp=None):
+    def _d_eval(self, x):
         """Evaluate the derivative of the polynomial.
 
         Arguments:
@@ -215,7 +215,7 @@ class ProductBasis(object):
         self.__name__ = name
         assert isinstance(degree, int)
         assert degree >= 0
-        if rv is not None:
+        if rvs is not None:
             assert isinstance(rvs, list) or isinstance(rvs, tuple)
             polynomials = [OrthogonalPolynomial(degree, rv=r, ncap=ncap,
                                                 quad=quad) for r in rvs]
@@ -339,7 +339,7 @@ class ProductBasis(object):
             s += str(self.num_terms[i]) + ' '
         return s
 
-    def __call__(self, x, hyp=None):
+    def __call__(self, x):
         num_pt = x.shape[0]
         basis_eval_tmp = [self.polynomials[j](x[:, j])
                           for j in range(self.num_input)]

@@ -118,11 +118,8 @@ class GpcTest(unittest.TestCase):
         plt.show()
 
     def test_product_basis(self):
-        import time
-        comp = (stats.beta(0.5, 0.5), stats.beta(0.5, 0.5))
-        rv = best.random.RandomVectorIndependent(comp)
-        print str(rv)
-        prod = best.gpc.ProductBasis(degree=10, rv=rv)
+        rvs = (stats.beta(0.5, 0.5), stats.beta(0.5, 0.5))
+        prod = best.gpc.ProductBasis(degree=10, rvs=rvs)
         print str(prod)
         x = rv.rvs(size=10)
         print prod(x).shape
