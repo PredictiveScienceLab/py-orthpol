@@ -15,7 +15,6 @@ Demos
 I provide several demos that demonstrate how polynomials can be constructed
 both from simple weight functions as well as ``scipy.stats`` random variables.
 Here is a list of them:
-
-    1. ``demos/demo1.py``: Hermite polynomials using a weight function.
-    2. ``demos/demo2.py``: Laguerre polynomials using a weight function.
-    3. ``demos/demo3.py``: Chebyshev polynomials using a weight function.
++ ``demos/demo1.py``: Hermite polynomials using a weight function.
++ ``demos/demo2.py``: Laguerre polynomials using a weight function.
++ ``demos/demo3.py``: Chebyshev polynomials using a weight function.
