@@ -29,6 +29,16 @@ The code that computes tensors products of univariate orthogonal polynomials
 is a transolation of [Stockos](http://trilinos.sandia.gov/packages/stokhos/)
 C++ routines to Python.
 
+Installation
+------------
+
+Simply clone the repository:
+
+git clone https://github.com/ebilionis/py-orthpol.git
+
+Go inside the directory and run:
+
+python setup.py install
 
 Demos
 -----
