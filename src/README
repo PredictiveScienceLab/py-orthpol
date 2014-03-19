@@ -1,0 +1,186 @@
+
+This is a package of routines, called ORTHPOL, for generating 
+orthogonal polynomials and Gauss-type quadrature rules developed
+by Walter Gautschi. A description of the underlying methods can be
+found in a companion paper published in ACM Transactions on
+Mathematical Software'', vol. 20 (1994), pp.21-62.
+
+There are files of four kinds in this package: the fortran netlib
+programs  r1mach,d1mach,  generating single- and double-precision
+machine constants for a variety of computers (Chapter 0); driver
+programs in fortran, called  test1.f, test2.f, ... (Chapter 1); files 
+called test1.out, test2.out, ...  containing the output of the 
+respective drivers when run on the Cyber 205 (Chapter 1); the  fortran 
+subroutines making up the core of the package (Chapters 2 - 6).
+
+The machine constants highlighted in the netlib programs are those for
+the Sun 4/670 MP workstation. If the package is to be run on a different
+computer, the Sun machine constants have to be commented out and the
+constants appropriate for the particular machine uncommented.
+
+Structurally, the package is one single UNIX file, which, when given a
+name, say package'', can be broken up into its individual component
+files by the command
+
+                     sh < package
+
+At the same time, this will create a  Makefile  which allows the user
+to compile and run (on a variety of computers) all test programs by
+typing
+
+                          make
+
+or the N-th test by typing
+
+                  make testN.out.local
+
+The output of testN in either case is placed into a file called
+testN.out.local.
+
+On computers which do not support UNIX, the individual files can be
+recovered by noting that they each start with a line of the form
+
+               cat <<C-END-OF-FILE > filename
+
+and end with the line
+
+                      C-END-OF-FILE
+
+To see which files must be assembled to run each test, refer to the
+lines starting with 'TESTn = ' in Makefile.
+
+The following is a brief description of the individual files of the
+package.
+
+   r1mach.f   a netlib program generating single-precision machine
+              constants for a variety of computers
+
+   d1mach.f   a netlib program generating double-precision machine
+              constants for a variety of computers
+
+   test1.f    relates to Example 3.1 of the companion paper, where
+              orthogonal polynomials are generated relative to a weight
+              function on (-1,1) having square root singularities at 
+              1, -1, 1/omega, -1/omega, with  omega  between 0 and 1
+   test1.out  contains the output of  test1.f
+
+   test2.f    relates to Example 3.2, where orthogonal polynomials are
+              generated relative to a weight function on (0,1) having 
+              a logarithmic singularity at the origin as well as an
+              algebraic singularity with degree  sigma  greater than -1
+   test2.out  contains the output of  test2.f
+
+   test3.f    relates to Example 4.1, implementing Stieltjes's
+              procedure and the Lanczos algorithm to generate discrete
+              Legendre polynomials
+   test3.out  contains the output of  test3.f
+
+   test4.f    relates to Example 4.2, where a discretization procedure
+              is applied to generate orthogonal polynomials relative
+              to the Chebyshev weight function plus a constant
+   test4.out  contains the output of  test4.f
+
+   test5.f    relates to Example 4.3 illustrating the use of a
+              discretization procedure to generate orthogonal
+              polynomials relative to the Jacobi weight function with
+              a mass point of given strength placed at the left end 
+              point
+   test5.out  contains the output of  test5.f
+
+   test6.f    relates to Example 4.4 implementing a discretization
+              procedure to generate orthogonal polynomials for the
+              logistics density function
+   test6.out  contains the output of  test6.f
+
+   test7.f    relates to Example 4.5 employing a general-purpose
+              discretization procedure to generate the half-range
+              Hermite polynomials
+   test7.out  contains the output of  test7.f
+
+   test8.f    relates to Example 4.6, where Example 3.1 is redone by
+              means of a discretized modified Chebyshev algorithm
+   test8.out  contains the output of  test8.f
+
+   test9.f    relates to Example 5.1, redoing Example 3.2 for sigma=1/2,
+              using a modification algorithm
+   test9.out  contains the output of  test9.f
+
+   test10.f   relates to Example 5.2, generating induced Legendre
+              polynomials
+   test10.out contains the output of  test10.f
+
+   test11.f   relates to Example 5.3, illustrating the performance of
+              the routines  chri.f  and  gchri.f  (see below) in the
+              case of the Jacobi weight function multiplied or divided
+              by a linear and quadratic factor
+   test11.out contains the output of  test11.f
+
+   recur.f    a subroutine generating the recursion coefficients of
+              classical orthogonal polynomials
+   drecur.f   a double-precision version of  recur.f
+
+   cheb.f     a subroutine implementing the modified Chebyshev 
+              algorithm
+   dcheb.f    a double-precision version of  cheb.f
+
+   sti.f      a subroutine generating the recursion coefficients of
+              discrete orthogonal polynomials by Stieltjes's procedure
+   dsti.f     a double-precision version of  sti.f
+
+   lancz.f    a subroutine generating the recursion coefficients of
+              discrete orthogonal polynomials by Lanczos's algorithm
+   dlancz.f   a double-precision version of  lancz.f 
+
+   mcdis.f    a subroutine computing the recursion coefficients (to
+              a given degree of approximation) of continuous and
+              mixed-type orthogonal polynomials by means of a multi-
+              component discretization procedure
+   dmcdis.f   a double-precision version of  mcdis.f
+
+   qgp.f      a general-purpose quadrature routine for use in  mcdis.f
+              or in mccheb.f
+
+   dqgp.f     a general-purpose quadrature routine for use in  dmcdis.f
+              or in dmcheb.f
+
+   mccheb.f   a subroutine implementing the discretized modified
+              Chebyshev algorithm whereby modified moments are
+              approximated by discrete modified moments
+   dmcheb.f   a double-precision version of  mccheb.f
+
+   chri.f     a subroutine for computing the recursion coefficients of
+              polynomials orthogonal with respect to a weight function
+              obtained by a linear or quadratic modification of a given
+              weight function
+   dchri.f    a double-precision version of  chri.f
+
+   knum.f     a subroutine which applies a backward recurrence algorithm
+              to generate weighted integrals of orthogonal polynomials 
+              multiplied by a Cauchy kernel
+   nu0jac.f   auxiliary routines providing an estimate for the starting
+   nu0lag.f   index in the backward recurrence algorithm of  knum.f  for
+   nu0her.f   respectively the Jacobi, Laguerre and Hermite weights
+   dknum.f    a double-precision version of  knum.f           
+
+   kern.f     a subroutine generating the kernels in the remainder term
+              of Gauss quadrature rules applied to analytic functions
+   dkern.f    a double-precision version of  kern.f
+
+   gchri.f    an alternative subroutine (to chri.f) for computing the
+              recursion coefficients of polynomials orthogonal with 
+              with respect to a weight function obtained by dividing a
+              given weight function by a linear or quadratic factor
+   dgchri.f   a double-precision version of  gchri.f
+
+   gauss.f    a subroutine generating Gauss quadrature rules relative
+              to a given integration measure
+   dgauss.f   a double-precision version of  gauss.f
+
+   radau.f    a subroutine generating Gauss-Radau quadrature rules
+              relative to a given integration measure
+   dradau.f   a double-precision version of  radau.f
+
+   lob.f      a subroutine generating Gauss-Lobatto quadrature rules
+              relative to a given integration measure
+   dlob.f     a double-precision version of  lob.f
+
