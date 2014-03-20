@@ -3,7 +3,7 @@ Orthogonal Polynomials in Python
 
 Description
 -----------
-The ``py-orthpol`` package defines the model ``orthpol`` which can be used
+The ``py-orthpol`` package defines the module ``orthpol`` which can be used
 easily construct univariate and multivariate orthogonal polynomials in Python.
 The purpose of this code is to serve as a component in Python packages that
 could use orthogonal polynomials as basis functions for various tasks.
