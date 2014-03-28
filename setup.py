@@ -13,6 +13,6 @@ setup(name='Orthogonal Polynomials in Python',
       ext_modules=[Extension('orthpol._orthpol',
                              glob.glob(os.path.join('src',
                                                     '*.f')),
-                             libraries=['python2.7', 'pthread', 'tcl8.5'],
+                             libraries=['python2.7', 'pthread'],
                              extra_link_args=['-shared'])],
       packages=['orthpol'])
