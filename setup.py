@@ -7,12 +7,16 @@ import os
 import glob
 
 
-setup(name='Orthogonal Polynomials in Python',
+setup(name='py-orthpol',
+      version='1.0',
+      description='Construct orthogonal polynomials with respect to arbitrary measures in Python',
       author='Ilias Bilionis',
-      version='0.0',
+      author_email='ibilion@purdue.edu',
+      url='https://github.com/ebilionis/py-orthpol',
+      download_url='https://github.com/ebilionis/py-orthpol/tarball/1.0',
+      keywords=['orthogonal polynomails', 'arbitrary probability measures', 'polynomial chaos',
+                'generalized polynomial chaos', 'uncertainty quantification'],
       ext_modules=[Extension('orthpol._orthpol',
                              glob.glob(os.path.join('src',
-                                                    '*.f')),
-                             libraries=['python2.7', 'pthread'],
-                             extra_link_args=['-shared'])],
+                                                    '*.f')))],
       packages=['orthpol'])
