@@ -12,7 +12,7 @@ cf2py double precision intent(in),depend(p),dimension(p) :: beta
 cf2py double precision intent(in),depend(p),dimension(p) :: gamma
       PHI(1) = 1. / GAMMA(1)
       IF (P.GE.1) THEN
-        PHI(2) = (X - ALPHA(1)) * (PHI(1) / GAMMA(1))
+        PHI(2) = (X - ALPHA(1)) * (PHI(1) / GAMMA(2))
       END IF
       DO I=3,P
         PHI(I) = ((X - ALPHA(I-1)) * PHI(I-1) - BETA(I-1) * PHI(I-2)) /
@@ -108,7 +108,7 @@ cf2py double precision intent(in,out,copy),depend(p),dimension(p) :: gamma
       BETA(1) = SQRT(BETA(1))
       GAMMA(1) = BETA(1)
       DO I=1,P
-        BETA(I) = SQRT(BETA(I) * GAMMA(I))
+      BETA(I) = SQRT(BETA(I) * GAMMA(I))
         GAMMA(I) = BETA(I)
       END DO
 
