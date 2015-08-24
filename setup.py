@@ -8,7 +8,7 @@ import glob
 
 
 setup(name='py-orthpol',
-      version='1.0',
+      version='1.1',
       description='Construct orthogonal polynomials with respect to arbitrary measures in Python',
       author='Ilias Bilionis',
       author_email='ibilion@purdue.edu',
